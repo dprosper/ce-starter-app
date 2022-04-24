@@ -17,7 +17,6 @@ limitations under the License.
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -54,10 +53,15 @@ func verifySecret() gin.HandlerFunc {
 			return
 		}
 
-		fmt.Println(form.Secret)
-		match := form.Secret == os.Getenv("APP_SECRET") //TODO: Read from env.Secret
-		if !match {
-			c.JSON(http.StatusOK, gin.H{"status": "failure", "message": "The secret provided is not a match."})
+		if os.Getenv("APP_SECRET") != "" {
+			match := form.Secret == os.Getenv("APP_SECRET")
+			if !match {
+				c.JSON(http.StatusOK, gin.H{"status": "failure", "message": "The secret provided is not a match."})
+				c.Abort()
+				return
+			}
+		} else {
+			c.JSON(http.StatusOK, gin.H{"status": "failure", "message": "A secret APP_SECRET was not provided during application deployment."})
 			c.Abort()
 			return
 		}
