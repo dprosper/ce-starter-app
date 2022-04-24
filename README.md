@@ -2,7 +2,7 @@
 
 ![](./docs/assets/ce-starter-app.png)
 
-Use this application to deploy to IBM Cloud Code Engine using the following two GitHub Actions:
+This application is an example used to test deploying to IBM Cloud Code Engine using the following two GitHub Actions:
 
 [Set up the IBM Cloud CLI](https://github.com/marketplace/actions/set-up-the-ibm-cloud-cli)
 
@@ -51,7 +51,6 @@ In the image above, the header on the page is titled "Hello World", we will modi
 10. Use the URL provided to validate the application changes. Once you are satisfied, merge and close the pull request.
 
 11. Once the pull request is closed, the application will be deleted from Code Engine. 
-
 
 ### Manually deploy to Code Engine
 
