@@ -1,4 +1,4 @@
-module dprosper/hello-world-ce
+module dprosper/ce-starter-app
 
 go 1.17
 
