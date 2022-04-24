@@ -1,5 +1,7 @@
 # Hello World for IBM Cloud Code Engine
 
+![](./docs/assets/hello-world-ce.png)
+
 ### Build and deploy to Code Engine after a Pull Request
 
 Submit a pull request and the code will be deployed to Code Engine to facilitate the review.
