@@ -1,0 +1,9 @@
+{
+   "configmapsfromfile": [
+      {
+         "name": "random.json",
+         "file": "./data/random.json",
+         "path": "/data"
+      }
+   ]
+}
