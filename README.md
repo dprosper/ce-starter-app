@@ -34,6 +34,12 @@ In the image above, the header on the page is titled "Hello World", we will modi
 5. Navigate to the `webui/src` folder and using your favorite code editor, edit the `Header.tsx` file.
 
 6. Modify line 9, from `Hello World!!` to `My Code Engine Application`.
+  - From:
+    ![](./docs/assets/pre-changes.png)
+
+  - To:
+    ![](./docs/assets/post-changes.png)
+
 
 7. Publish the branch to **your fork**.
 
