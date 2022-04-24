@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"strings"
 
-	"dprosper/hw-ce/internal/logger"
-	"dprosper/hw-ce/internal/middleware/common"
+	"dprosper/hello-world-ce/internal/logger"
+	"dprosper/hello-world-ce/internal/middleware/common"
 
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/contrib/gzip"

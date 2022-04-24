@@ -17,7 +17,7 @@ limitations under the License.
 package common
 
 import (
-	"dprosper/hw-ce/internal/logger"
+	"dprosper/hello-world-ce/internal/logger"
 
 	"github.com/gin-gonic/gin"
 )
