@@ -79,7 +79,11 @@ func readEnv() gin.HandlerFunc {
 		for _, env := range os.Environ() {
 			kv := strings.SplitN(env, "=", 2)
 			if kv[0] != "APP_SECRET" {
-				envs = append(envs, Env{Key: kv[0], Value: kv[1]})
+				if (strings.Contains(strings.ToLower(kv[0]), "apikey")) || (strings.Contains(strings.ToLower(kv[0]), "api_key")) {
+					envs = append(envs, Env{Key: kv[0], Value: "*******"})
+				} else {
+					envs = append(envs, Env{Key: kv[0], Value: kv[1]})
+				}
 			}
 		}
 		c.JSON(http.StatusOK, envs)
