@@ -24,17 +24,11 @@ In the image above, the header on the page is titled "Hello World", we will modi
 2. In **your fork**, go to **Settings** > **Secrets** > **Actions** and create a new repository secret:
     `API_KEY`: IBM Cloud API Key with the necessary permissions to create / delete Code Engine projects.
 
-3. Clone **your fork** of this repository to your computer. 
+3. Click on the **<>Code** tab, and then on **main**,  create a new branch called `header-title`.
 
-    ```sh
-      git clone https://github.com/YOUR-USERNAME/ce-starter-app
-    ```
+4. Navigate to the `webui/src` folder and using the built-in editor on GitHub, edit the `Header.tsx` file.
 
-4. Create a new branch called `header-title`.
-
-5. Navigate to the `webui/src` folder and using your favorite code editor, edit the `Header.tsx` file.
-
-6. Modify line 9, from `Hello World!!` to `My Code Engine Application`.
+5. Modify line 9, from `Hello World!!` to `My Code Engine Application`.
   - From:
     ![](./docs/assets/pre-changes.png)
 
@@ -42,9 +36,12 @@ In the image above, the header on the page is titled "Hello World", we will modi
     ![](./docs/assets/post-changes.png)
 
 
-7. Publish the branch to **your fork**.
+6. Commit your changes.
 
-8. Create a pull request comparing `main` to `header-title`
+7. Click on the **Actions** tab and click on `I understand my workflows, go ahead and enable them.`
+    ![](./docs/assets/actions_authorize.png)
+
+8. Create a pull request comparing `main` to `header-title` branches in **your forked repository**.  Note, by default the compare is done against the source repository, so make sure to select **your forked repository** on both sides of the compare. 
 
 9. After submitting the pull request, the application will be built from source and deployed to Code Engine.  
 
