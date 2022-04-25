@@ -6,7 +6,7 @@ export const Header: React.FunctionComponent = () => {
             <header>
                 <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
                     <a className="d-flex align-items-center text-dark text-decoration-none" href="/">
-                        <span className="fs-4">Hello World !!</span>
+                        <span className="fs-4">My Code Engine Application</span>
                     </a>
                 </div>
 
