@@ -23,7 +23,7 @@ export const Secret: React.FunctionComponent<secretProps> = ({ secretResponse, s
                 <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                     <div className="accordion-body">
                         <strong>This section is used to verify a secret that is added to the appplication.</strong><br />
-                        The value of <code>APP_SECRET</code> is read from the server and coompared to the value you enter below.
+                        The value of <code>APP_SECRET</code> is read from the server and compared to the value you enter below.
                         <br /><br />
 
                         <form className="row g-3" onSubmit={onFormSubmit}>
