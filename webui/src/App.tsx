@@ -59,7 +59,6 @@ export const App: React.FunctionComponent = () => {
             }
         })
             .then((response) => {
-                console.log(response.data)
                 setEnv(response.data)
             });
     }, []);
@@ -71,7 +70,6 @@ export const App: React.FunctionComponent = () => {
             }
         })
             .then((response) => {
-                console.log(response.data)
                 setDisk(response.data)
             });
     }, []);
