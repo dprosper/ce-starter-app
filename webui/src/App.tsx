@@ -4,6 +4,7 @@ import axios from "axios";
 import { Header } from './Header';
 import { Configmap } from './components/Configmap';
 import { Env } from './components/Env';
+import { Disk } from './components/Disk';
 import { Secret } from './components/Secret';
 
 interface IData {
@@ -18,9 +19,19 @@ interface IEnv {
     value: string;
 }
 
+interface IDisk {
+	filesystem:  string;
+	size:        string;
+	used:        string;
+	available:       string;
+	used_percent: string;
+	mounted_on:   string;
+}
+
 export const App: React.FunctionComponent = () => {
     const [data, setData] = useState<IData | undefined>();
     const [env, setEnv] = useState<IEnv[] | undefined>();
+    const [disk, setDisk] = useState<IDisk[] | undefined>();
     const [secretValue, setSecretValue] = useState('');
     const [secretResponse, setSecretResponse] = React.useState('');
     const [secretResponseStatus, setSecretResponseStatus] = React.useState(false);
@@ -50,6 +61,18 @@ export const App: React.FunctionComponent = () => {
             .then((response) => {
                 console.log(response.data)
                 setEnv(response.data)
+            });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`/api/disk`, {
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+            .then((response) => {
+                console.log(response.data)
+                setDisk(response.data)
             });
     }, []);
 
@@ -89,6 +112,7 @@ export const App: React.FunctionComponent = () => {
                     <Secret secretResponse={secretResponse} secretResponseStatus={secretResponseStatus} onFormSubmit={onFormSubmit} onChangeSecret={onChangeSecret} />
 
                     <Env kvs={env} />
+                    <Disk disks={disk} />
                 </div>
             </div>
 

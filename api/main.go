@@ -17,6 +17,7 @@ limitations under the License.
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -24,6 +25,9 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+
+	human "github.com/dustin/go-humanize"
+	"github.com/shirou/gopsutil/disk"
 
 	"dprosper/ce-starter-app/internal/logger"
 	"dprosper/ce-starter-app/internal/middleware/common"
@@ -43,6 +47,16 @@ type Formvalue struct {
 type Env struct {
 	Key   string `json:"key" binding:"required"`
 	Value string `json:"value" binding:"required"`
+}
+
+// Disk struct
+type Disk struct {
+	Filesystem  string `json:"filesystem" binding:"required"`
+	Size        string `json:"size" binding:"required"`
+	Used        string `json:"used" binding:"required"`
+	Avail       string `json:"available" binding:"required"`
+	UsedPercent string `json:"used_percent" binding:"required"`
+	MountedOn   string `json:"mounted_on" binding:"required"`
 }
 
 func verifySecret() gin.HandlerFunc {
@@ -94,6 +108,28 @@ func readEnv() gin.HandlerFunc {
 	}
 }
 
+func readDisk() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		disks := []Disk{}
+
+		parts, _ := disk.Partitions(true)
+		for _, p := range parts {
+			device := p.Mountpoint
+			s, _ := disk.Usage(device)
+
+			if s.Total == 0 {
+				continue
+			}
+
+			percent := fmt.Sprintf("%2.f%%", s.UsedPercent)
+
+			disks = append(disks, Disk{Filesystem: s.Fstype, Size: human.Bytes(s.Total), Used: human.Bytes(s.Used), Avail: human.Bytes(s.Free), UsedPercent: percent, MountedOn: p.Mountpoint})
+		}
+		c.JSON(http.StatusOK, disks)
+	}
+}
+
 func main() {
 	logger.InitLogger(true, true, true)
 
@@ -112,6 +148,8 @@ func main() {
 	router.GET("/api/read", readData())
 
 	router.GET("/api/env", readEnv())
+
+	router.GET("/api/disk", readDisk())
 
 	router.POST("/api/verify", verifySecret())
 
