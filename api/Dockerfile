@@ -15,7 +15,8 @@ RUN npm ci --silent
 RUN npm run build
 
 # Now copy it into our build images.
-FROM gcr.io/distroless/base
+# FROM gcr.io/distroless/base
+FROM golang:buster
 COPY --from=buildgo /go/bin/app /
 COPY --from=buildjs /app/build /public
 CMD ["/app"]
