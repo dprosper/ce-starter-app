@@ -1,6 +1,6 @@
 # build server application.
-# FROM golang:buster as buildgo
-FROM icr.io/codeengine/golang:alpine as buildgo
+FROM golang:buster as buildgo
+# FROM icr.io/codeengine/golang:alpine as buildgo
 WORKDIR /go/src/app
 ADD ./api /go/src/app
 ADD ./internal /go/src/app/internal
@@ -16,8 +16,8 @@ RUN npm ci --silent
 RUN npm run build
 
 # Now copy it into our build images.
-# FROM gcr.io/distroless/base
-FROM icr.io/codeengine/alpine
+FROM gcr.io/distroless/base
+# FROM icr.io/codeengine/alpine
 COPY --from=buildgo /go/bin/app /
 COPY --from=buildjs /app/build /public
 CMD ["/app"]
