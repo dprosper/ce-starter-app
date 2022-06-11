@@ -1,5 +1,6 @@
 # build server application.
-FROM golang:buster as buildgo
+# FROM golang:buster as buildgo
+FROM icr.io/codeengine/golang:alpine
 WORKDIR /go/src/app
 ADD ./api /go/src/app
 ADD ./internal /go/src/app/internal
